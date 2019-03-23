@@ -1,5 +1,5 @@
 Simple routing for WordPress.
-====================
+=============================
 
 ### Basic Usage
 Code::
@@ -27,7 +27,6 @@ Code::
         $query = 'posts_per_page=3&post_type='.$params['name'];
         Routes::load('archive.php', null, $query, 200);
     });
-
     Routes::map('blog/:name/page/:pg', function($params){
         $query = 'posts_per_page=3&post_type='.$params['name'].'&paged='.$params['pg'];
         $params = array('thing' => 'foo', 'bar' => 'I dont even know');
@@ -40,7 +39,7 @@ Map
 `Routes::map($pattern, $callback)`
 
 Usage
-====================
+=====
 
 A `functions.php` where I want to display custom paginated content:
 
@@ -56,6 +55,90 @@ Code::
         Routes::load('archive.php', null, $query);
 
     ?>
+
+Usage with class using namespaces
+=================================
+
+Code::
+
+    <?php
+    Routes::map('info/:name/page/:pg',['App\Controllers\PublicController','infoFunction']);
+
+    ?>
+
+
+The arguments will passed automatically to the class function
+
+Code::
+
+    <?php
+
+
+    namespace App\Controllers;
+
+
+    class PublicController
+    {
+
+
+        /**
+         * @return void
+         * @throws \Exception
+         */
+        public  function testFunction($name,$pg) {
+
+
+
+        }
+
+    }
+    ?>
+
+
+
+
+Usage without  namespaces
+=========================
+
+
+Code::
+
+    <?php
+    require plugin_dir_path(__FILE__).'/App/Controllers/PublicController';
+    Routes::map('info/:name/page/:pg',[PublicController::class,'infoFunction']);
+
+    ?>
+
+Also the arguments will passed automatically to the class function
+
+Code::
+
+    <?php
+
+
+    namespace App\Controllers;
+
+
+    class PublicController
+    {
+
+
+        /**
+         * @return void
+         * @throws \Exception
+         */
+        public  function testFunction($name,$pg) {
+
+
+
+        }
+
+    }
+    ?>
+
+
+
+
 
 ### Arguments
 
@@ -86,7 +169,7 @@ So in this example: `'info/:name/page/:pg'`, $params would have data for:
 * * *
 
 Load
-====================
+====
 `Routes::load($php_file, $args, $query = null, $status_code = 200)`
 
 ### Arguments
