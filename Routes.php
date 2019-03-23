@@ -20,11 +20,17 @@ class Routes
 
     protected $router;
 
+    /**
+     * Routes constructor.
+     */
     function __construct() {
         add_action('init', array($this, 'match_current_request'));
         add_action('wp_loaded', array($this, 'match_current_request'));
     }
 
+    /**
+     * @throws ReflectionException
+     */
     static function match_current_request() {
         global $upstatement_routes;
         if (isset($upstatement_routes->router)) {
