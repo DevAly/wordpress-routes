@@ -3,16 +3,17 @@ Simple routing for WordPress.
 
 ### Basic Usage
 Code::
-<?php
-/* functions.php */
-Routes::map('myfoo/bar', 'my_callback_function');
-Routes::map('my-events/:event', function($params) {
-    $event_slug = $params['event'];
-    $event = new ECP_Event($event_slug);
-    $query = new WPQuery(); //if you want to send a custom query to the page's main loop
-    Routes::load('single.php', array('event' => $event), $query, 200);
 
-?>
+    <?php
+    /* functions.php */
+    Routes::map('myfoo/bar', 'my_callback_function');
+    Routes::map('my-events/:event', function($params) {
+        $event_slug = $params['event'];
+        $event = new ECP_Event($event_slug);
+        $query = new WPQuery(); //if you want to send a custom query to the page's main loop
+        Routes::load('single.php', array('event' => $event), $query, 200);
+
+    ?>
 
 Using routes makes it easy for you to implement custom pagination — and anything else you might imagine in your wildest dreams of URLs and parameters. OMG so easy!
 
@@ -21,18 +22,18 @@ In your functions.php file, this can be called anywhere (don't hook it to init o
 
 Code::
 
-<?php
-Routes::map('blog/:name', function($params){
-    $query = 'posts_per_page=3&post_type='.$params['name'];
-    Routes::load('archive.php', null, $query, 200);
-});
+    <?php
+    Routes::map('blog/:name', function($params){
+        $query = 'posts_per_page=3&post_type='.$params['name'];
+        Routes::load('archive.php', null, $query, 200);
+    });
 
-Routes::map('blog/:name/page/:pg', function($params){
-    $query = 'posts_per_page=3&post_type='.$params['name'].'&paged='.$params['pg'];
-    $params = array('thing' => 'foo', 'bar' => 'I dont even know');
-    Routes::load('archive.php', $params, $query);
+    Routes::map('blog/:name/page/:pg', function($params){
+        $query = 'posts_per_page=3&post_type='.$params['name'].'&paged='.$params['pg'];
+        $params = array('thing' => 'foo', 'bar' => 'I dont even know');
+        Routes::load('archive.php', $params, $query);
 
-?>
+    ?>
 
 Map
 
@@ -46,15 +47,15 @@ A `functions.php` where I want to display custom paginated content:
 Code::
 
 
-<?php
-Routes::map('info/:name/page/:pg', function($params){
-	//make a custom query based on incoming path and run it...
-	$query = 'posts_per_page=3&post_type='.$params['name'].'&paged='.intval($params['pg']);
+    <?php
+    Routes::map('info/:name/page/:pg', function($params){
+        //make a custom query based on incoming path and run it...
+        $query = 'posts_per_page=3&post_type='.$params['name'].'&paged='.intval($params['pg']);
 
-	//load up a template which will use that query
-	Routes::load('archive.php', null, $query);
+        //load up a template which will use that query
+        Routes::load('archive.php', null, $query);
 
-?>
+    ?>
 
 ### Arguments
 
@@ -99,34 +100,35 @@ Any data you want to send to the resulting view. Example:
 Code::
 
 
-<?php
-/* functions.php */
+    <?php
+    /* functions.php */
 
-Routes::map('info/:name/page/:pg', function($params){
-    //make a custom query based on incoming path and run it...
-    $query = 'posts_per_page=3&post_type='.$params['name'].'&paged='.intval($params['pg']);
+    Routes::map('info/:name/page/:pg', function($params){
+        //make a custom query based on incoming path and run it...
+        $query = 'posts_per_page=3&post_type='.$params['name'].'&paged='.intval($params['pg']);
 
-    //load up a template which will use that query
-    $params = array();
-    $params['my_title'] = 'This is my custom title';
-    Routes::load('archive.php', $params, $query, 200);
+        //load up a template which will use that query
+        $params = array();
+        $params['my_title'] = 'This is my custom title';
+        Routes::load('archive.php', $params, $query, 200);
 
-?>
+    ?>
+
 Code::
 
 
-<?php
-/* archive.php */
+    <?php
+    /* archive.php */
 
-global $params;
-$context['wp_title'] = $params['my_title']; // "This is my custom title"
-/* the rest as normal... */
-Timber::render('archive.twig', $context);
+    global $params;
+    $context['wp_title'] = $params['my_title']; // "This is my custom title"
+    /* the rest as normal... */
+    Timber::render('archive.twig', $context);
 
 
-$query
-The query you want to use, it can accept a string or array just like `Timber::get_posts` -- use the standard WP_Query syntax (or a WP_Query object too)
+    $query
+    The query you want to use, it can accept a string or array just like `Timber::get_posts` -- use the standard WP_Query syntax (or a WP_Query object too)
 
-`$status_code`
-Send an optional status code. Defaults to 200 for 'Success/OK'
-?>
+    `$status_code`
+    Send an optional status code. Defaults to 200 for 'Success/OK'
+    ?>
