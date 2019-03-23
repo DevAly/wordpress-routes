@@ -1,12 +1,9 @@
 Simple routing for WordPress.
-
-[![Build Status](https://img.shields.io/travis/med-amin/wordpress-routes/master.svg?style=flat-square)](https://travis-ci.org/med-amin/wordpress-routes)
-[![Coverage Status](https://img.shields.io/coveralls/med-amin/wordpress-routes.svg?style=flat-square)](https://coveralls.io/r/med-amin/wordpress-routes?branch=master)
-[![Packagist Downloads](https://img.shields.io/packagist/dt/med-amin/wordpress-routes.svg?style=flat-square)]()
-
+====================
 
 ### Basic Usage
-```php
+Code::
+<?php
 /* functions.php */
 Routes::map('myfoo/bar', 'my_callback_function');
 Routes::map('my-events/:event', function($params) {
@@ -15,14 +12,14 @@ Routes::map('my-events/:event', function($params) {
     $query = new WPQuery(); //if you want to send a custom query to the page's main loop
     Routes::load('single.php', array('event' => $event), $query, 200);
 
-
+?>
 
 Using routes makes it easy for you to implement custom pagination — and anything else you might imagine in your wildest dreams of URLs and parameters. OMG so easy!
 
 ## Some examples
 In your functions.php file, this can be called anywhere (don't hook it to init or another action or it might be called too late)
 
-```php
+Code::
 <?php
 Routes::map('blog/:name', function($params){
     $query = 'posts_per_page=3&post_type='.$params['name'];
@@ -34,17 +31,18 @@ Routes::map('blog/:name/page/:pg', function($params){
     $params = array('thing' => 'foo', 'bar' => 'I dont even know');
     Routes::load('archive.php', $params, $query);
 
-```
+?>
 
 Map
 
 `Routes::map($pattern, $callback)`
 
-### Usage
+Usage
+====================
 
 A `functions.php` where I want to display custom paginated content:
 
-```php
+Code::
 <?php
 Routes::map('info/:name/page/:pg', function($params){
 	//make a custom query based on incoming path and run it...
@@ -53,11 +51,11 @@ Routes::map('info/:name/page/:pg', function($params){
 	//load up a template which will use that query
 	Routes::load('archive.php', null, $query);
 
-
+?>
 
 ### Arguments
 
-`$pattern` (required)
+:param $pattern (required)
 Set a pattern for Routes to match on, by default everything is handled as a string. Any segment that begins with a `:` is handled as a variable, for example:
 
 **To paginate:**
@@ -84,7 +82,7 @@ So in this example: `'info/:name/page/:pg'`, $params would have data for:
 * * *
 
 Load
-
+====================
 `Routes::load($php_file, $args, $query = null, $status_code = 200)`
 
 ### Arguments
@@ -95,7 +93,7 @@ A PHP file to load, in my experience this is usually your archive.php or a gener
 `$template_params`
 Any data you want to send to the resulting view. Example:
 
-```php
+Code::
 <?php
 /* functions.php */
 
@@ -108,8 +106,8 @@ Routes::map('info/:name/page/:pg', function($params){
     $params['my_title'] = 'This is my custom title';
     Routes::load('archive.php', $params, $query, 200);
 
-
-```php
+?>
+Code::
 <?php
 /* archive.php */
 
@@ -117,10 +115,11 @@ global $params;
 $context['wp_title'] = $params['my_title']; // "This is my custom title"
 /* the rest as normal... */
 Timber::render('archive.twig', $context);
-```
 
-`$query`
+
+$query
 The query you want to use, it can accept a string or array just like `Timber::get_posts` -- use the standard WP_Query syntax (or a WP_Query object too)
 
 `$status_code`
 Send an optional status code. Defaults to 200 for 'Success/OK'
+?>
