@@ -5,7 +5,7 @@ Plugin URI: https://github.com/med-amin/wordpress-routes
 Description: Simple routing for WordPress.
 Author: Mohamed Amin + Jared Novack + Upstatement
 Version: 0.0.5
-Author URI: https://github.com/med-amin/wordpress-routes
+Author URI: https://github.com/med-amin
 
 Usage:
 
