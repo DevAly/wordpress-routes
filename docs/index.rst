@@ -104,7 +104,7 @@ Usage without  namespaces
 Code::
 
     <?php
-    require plugin_dir_path(__FILE__).'/App/Controllers/PublicController';
+    require plugin_dir_path(__FILE__).'/App/Controllers/PublicController.php';
     Routes::map('info/:name/page/:pg',[PublicController::class,'infoFunction']);
 
     ?>
