@@ -1,4 +1,3 @@
-# Routes
 Simple routing for WordPress.
 
 [![Build Status](https://img.shields.io/travis/med-amin/wordpress-routes/master.svg?style=flat-square)](https://travis-ci.org/med-amin/wordpress-routes)
@@ -15,8 +14,8 @@ Routes::map('my-events/:event', function($params) {
     $event = new ECP_Event($event_slug);
     $query = new WPQuery(); //if you want to send a custom query to the page's main loop
     Routes::load('single.php', array('event' => $event), $query, 200);
-});
-```
+
+
 
 Using routes makes it easy for you to implement custom pagination — and anything else you might imagine in your wildest dreams of URLs and parameters. OMG so easy!
 
@@ -34,10 +33,10 @@ Routes::map('blog/:name/page/:pg', function($params){
     $query = 'posts_per_page=3&post_type='.$params['name'].'&paged='.$params['pg'];
     $params = array('thing' => 'foo', 'bar' => 'I dont even know');
     Routes::load('archive.php', $params, $query);
-});
+
 ```
 
-## map
+Map
 
 `Routes::map($pattern, $callback)`
 
@@ -53,8 +52,8 @@ Routes::map('info/:name/page/:pg', function($params){
 
 	//load up a template which will use that query
 	Routes::load('archive.php', null, $query);
-});
-```
+
+
 
 ### Arguments
 
@@ -84,7 +83,7 @@ So in this example: `'info/:name/page/:pg'`, $params would have data for:
 
 * * *
 
-## load
+Load
 
 `Routes::load($php_file, $args, $query = null, $status_code = 200)`
 
@@ -108,8 +107,7 @@ Routes::map('info/:name/page/:pg', function($params){
     $params = array();
     $params['my_title'] = 'This is my custom title';
     Routes::load('archive.php', $params, $query, 200);
-});
-```
+
 
 ```php
 <?php
