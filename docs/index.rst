@@ -20,6 +20,7 @@ Using routes makes it easy for you to implement custom pagination — and anythi
 In your functions.php file, this can be called anywhere (don't hook it to init or another action or it might be called too late)
 
 Code::
+
 <?php
 Routes::map('blog/:name', function($params){
     $query = 'posts_per_page=3&post_type='.$params['name'];
@@ -43,6 +44,8 @@ Usage
 A `functions.php` where I want to display custom paginated content:
 
 Code::
+
+
 <?php
 Routes::map('info/:name/page/:pg', function($params){
 	//make a custom query based on incoming path and run it...
@@ -94,6 +97,8 @@ A PHP file to load, in my experience this is usually your archive.php or a gener
 Any data you want to send to the resulting view. Example:
 
 Code::
+
+
 <?php
 /* functions.php */
 
@@ -108,6 +113,8 @@ Routes::map('info/:name/page/:pg', function($params){
 
 ?>
 Code::
+
+
 <?php
 /* archive.php */
 
