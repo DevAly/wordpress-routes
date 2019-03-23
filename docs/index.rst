@@ -56,6 +56,90 @@ Code::
 
     ?>
 
+Usage with class using namespaces
+=================================
+
+Code::
+
+    <?php
+    Routes::map('info/:name/page/:pg',['App\Controllers\PublicController','infoFunction']);
+
+    ?>
+
+
+The arguments will passed automatically to the class function
+
+Code::
+
+    <?php
+
+
+    namespace App\Controllers;
+
+
+    class PublicController
+    {
+
+
+        /**
+         * @return void
+         * @throws \Exception
+         */
+        public  function testFunction($name,$pg) {
+
+
+
+        }
+
+    }
+    ?>
+
+
+
+
+Usage without  namespaces
+=========================
+
+
+Code::
+
+    <?php
+    require plugin_dir_path(__FILE__).'/App/Controllers/PublicController';
+    Routes::map('info/:name/page/:pg',[PublicController::class,'infoFunction']);
+
+    ?>
+
+Also the arguments will passed automatically to the class function
+
+Code::
+
+    <?php
+
+
+    namespace App\Controllers;
+
+
+    class PublicController
+    {
+
+
+        /**
+         * @return void
+         * @throws \Exception
+         */
+        public  function testFunction($name,$pg) {
+
+
+
+        }
+
+    }
+    ?>
+
+
+
+
+
 ### Arguments
 
 :param $pattern (required)
