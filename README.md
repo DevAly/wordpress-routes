@@ -1,9 +1,9 @@
 # Routes
 Simple routing for WordPress.
 
-[![Build Status](https://img.shields.io/travis/med-amin/wordpress-routes/master.svg?style=flat-square)](https://travis-ci.org/med-amin/wordpress-routes)
-[![Coverage Status](https://img.shields.io/coveralls/med-amin/wordpress-routes.svg?style=flat-square)](https://coveralls.io/r/med-amin/wordpress-routes?branch=master)
-[![Packagist Downloads](https://img.shields.io/packagist/dt/med-amin/wordpress-routes.svg?style=flat-square)]()
+[![Build Status](https://img.shields.io/travis/devaly/wordpress-routes/master.svg?style=flat-square)](https://travis-ci.org/devaly/wordpress-routes)
+[![Coverage Status](https://coveralls.io/repos/github/DevAly/wordpress-routes/badge.svg?branch=master)](https://coveralls.io/github/DevAly/wordpress-routes?branch=master)
+[![Packagist Downloads](https://img.shields.io/packagist/dt/devaly/wordpress-routes.svg?style=flat-square)]()
 
 
 ### Basic Usage
