@@ -5,7 +5,7 @@ Plugin URI: https://github.com/med-amin/wordpress-routes
 Description: Simple routing for WordPress.
 Author: Mohamed Amin + Jared Novack + Upstatement
 Version: 0.0.5
-Author URI: https://github.com/med-amin
+Author URI: https://github.com/med-amin/wordpress-routes
 
 Usage:
 
@@ -20,17 +20,14 @@ class Routes
 
     protected $router;
 
-    /**
-     * Routes constructor.
-     */
     function __construct() {
         add_action('init', array($this, 'match_current_request'));
         add_action('wp_loaded', array($this, 'match_current_request'));
+        add_action('wp_head', function () {
+            echo '<meta name="csrf-token" content="' . wp_csrf_token() . '" />';
+        });
     }
 
-    /**
-     * @throws ReflectionException
-     */
     static function match_current_request() {
         global $upstatement_routes;
         if (isset($upstatement_routes->router)) {
@@ -40,8 +37,8 @@ class Routes
 
 
             if ($route && isset($route['target'])) {
-                if (self::isStaticClassMethod($route['target']) || self::isClosure($route['target'])) {//Is static method
-
+                if (self::isStaticClassMethod($route['target']) || self::isClosure($route['target'])) {//Is static method or closure
+                    self::verifyCsrfToken();
 
                     if (isset($route['params'])) {
 
@@ -51,6 +48,7 @@ class Routes
                     }
 
                 } elseif (self::isPublicClassMethod($route['target'])) {
+                    self::verifyCsrfToken();
                     if (isset($route['params'])) {
                         self::callPublicMethod($route['target'], $route['params']);
 
@@ -91,8 +89,10 @@ class Routes
             $upstatement_routes->router->setBasePath($base_path);
         }
         $route = self::convert_route($route);
+
         $upstatement_routes->router->map('GET|POST|PUT|DELETE', trailingslashit($route), $callback, $args);
         $upstatement_routes->router->map('GET|POST|PUT|DELETE', untrailingslashit($route), $callback, $args);
+
     }
 
     /**
@@ -241,6 +241,31 @@ class Routes
         }
     }
 
+    /**
+     * Generating csrf token  secure routes
+     * @return bool
+     * @throws Exception
+     */
+    private static function verifyCsrfToken() {
+        $verifyCsrf = apply_filters('wp_routes_csrf_token_verification', false);
+        if ($verifyCsrf) {
+            if (!empty($_POST['csrf-token'])) {
+                $verify = wp_verify_nonce($_POST['csrf-token'], 'wp_csrf_token');
+                if ($verify) {
+                    return true;
+                }
+            } elseif (!empty($_GET['csrf-token'])) {
+                $verify = wp_verify_nonce($_GET['csrf-token'], 'wp_csrf_token');
+                if ($verify) {
+                    return true;
+                }
+            }
+            throw new Exception("Invalid csrf token ");
+        }
+
+
+    }
+
 
 }
 
@@ -252,3 +277,9 @@ if (file_exists($composer_autoload = __DIR__ . '/vendor/autoload.php')
     require_once($composer_autoload);
 }
 
+if (!function_exists('wp_csrf_token')) {
+    function wp_csrf_token() {
+        return wp_create_nonce('wp_csrf_token');
+    }
+
+}
