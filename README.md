@@ -14,6 +14,8 @@ Require WP Routes with composer
 ```
 $ composer require devaly/wordpress-routes
 ```
+#OR
+Download the WP Routes from [Releases](https://github.com/DevAly/wordpress-routes/releases) assets wordpress-routes.zip and install as wordpress plugin
 
 
 ### Basic Usage
