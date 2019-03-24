@@ -9,7 +9,7 @@ This package is a re-published, re-organised and maintained version of [Upstatem
 
 # Installation
 
-Require WP_Route with composer
+Require WP Routes with composer
 
 ```
 $ composer require devaly/wordpress-routes

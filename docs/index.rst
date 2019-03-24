@@ -1,6 +1,13 @@
 Simple routing for WordPress.
 =============================
 
+
+Installation
+============
+
+
+
+
 ### Basic Usage
 Code::
 
