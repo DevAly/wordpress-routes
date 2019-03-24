@@ -7,6 +7,14 @@ This package is a re-published, re-organised and maintained version of [Upstatem
 [![Coverage Status](https://coveralls.io/repos/github/DevAly/wordpress-routes/badge.svg?branch=master)](https://coveralls.io/github/DevAly/wordpress-routes?branch=master)
 [![Packagist Downloads](https://img.shields.io/packagist/dt/devaly/wordpress-routes.svg?style=flat-square)]()
 
+# Installation
+
+Require WP Routes with composer
+
+```
+$ composer require devaly/wordpress-routes
+```
+
 
 ### Basic Usage
 ```php

@@ -1,6 +1,20 @@
 Simple routing for WordPress.
 =============================
 
+
+Installation
+============
+
+
+
+Require WP Routes with composer
+
+Code::
+
+    $ composer require devaly/wordpress-routes
+
+
+
 ### Basic Usage
 Code::
 
