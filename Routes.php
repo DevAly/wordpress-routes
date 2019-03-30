@@ -3,9 +3,9 @@
 Plugin Name: Wordpress Routes
 Plugin URI: https://github.com/med-amin/wordpress-routes
 Description: Simple routing for WordPress.
-Author: Mohamed Amin + Jared Novack + Upstatement
-Version: 0.0.5
-Author URI: https://github.com/med-amin/wordpress-routes
+Author: Mohamed Amine + Jared Novack + Upstatement
+Version: 0.0.6
+Author URI: https://github.com/DevAly/wordpress-routes
 
 Usage:
 
@@ -242,7 +242,7 @@ class Routes
     }
 
     /**
-     * Generating csrf token  secure routes
+     * 0.Generating csrf token  secure routes
      * @return bool
      * @throws Exception
      */
