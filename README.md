@@ -5,6 +5,8 @@ This package is a re-published, re-organised and maintained version of [Upstatem
 
 [![Build Status](https://img.shields.io/travis/DevAly/wordpress-routes/master.svg?style=flat-square)](https://travis-ci.org/DevAly/wordpress-routes)
 [![Coverage Status](https://coveralls.io/repos/github/DevAly/wordpress-routes/badge.svg?branch=master)](https://coveralls.io/github/DevAly/wordpress-routes?branch=master)
+[![Coverage Status](https://img.shields.io/github/release/devaly/wordpress-routes.svg)](https://github.com/DevAly/wordpress-routes)
+<img alt="GitHub" src="https://img.shields.io/github/license/DevAly/wordpress-routes.svg">
 <a href="https://packagist.org/packages/devaly/wordpress-routes"><img src="https://poser.pugx.org/devaly/wordpress-routes/d/total.svg" alt="Total Downloads"></a>
 
 # Installation
