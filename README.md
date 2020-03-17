@@ -1,7 +1,7 @@
 # Routes
 Simple routing for WordPress.
 
-This package is a re-published, re-organised and maintained version of [Upstatement/routes](https://github.com/Upstatement/routes)
+This package is a re-organised and maintained version of [Upstatement/routes](https://github.com/Upstatement/routes)
 
 [![Build Status](https://img.shields.io/travis/DevAly/wordpress-routes/master.svg?style=flat-square)](https://travis-ci.org/DevAly/wordpress-routes)
 [![Coverage Status](https://coveralls.io/repos/github/DevAly/wordpress-routes/badge.svg?branch=master)](https://coveralls.io/github/DevAly/wordpress-routes?branch=master)
